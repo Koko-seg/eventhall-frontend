@@ -1,21 +1,33 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { X, User, Mail, Phone, MapPin, Loader2, AlertCircle } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  X,
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
+import { useAuth } from "@/contexts/auth-context";
 
 interface UserSignupModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onSuccess?: () => void
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess?: () => void;
 }
 
-export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSignupModalProps) {
+export default function UserSignupModal({
+  isOpen,
+  onClose,
+  onSuccess,
+}: UserSignupModalProps) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,24 +37,24 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
     address: "",
     password: "",
     confirmPassword: "",
-  })
-  const [error, setError] = useState("")
-  const { register, isLoading } = useAuth()
+  });
+  const [error, setError] = useState("");
+  const { register, isLoading } = useAuth();
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords don't match")
-      return
+      setError("Passwords don't match");
+      return;
     }
 
     if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters")
-      return
+      setError("Password must be at least 6 characters");
+      return;
     }
 
     try {
@@ -54,10 +66,10 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
         phone: formData.phone,
         dateOfBirth: formData.dateOfBirth,
         address: formData.address,
-      })
+      });
 
       if (result.success) {
-        onClose()
+        onClose();
         setFormData({
           firstName: "",
           lastName: "",
@@ -67,17 +79,17 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
           address: "",
           password: "",
           confirmPassword: "",
-        })
+        });
         if (onSuccess) {
-          onSuccess()
+          onSuccess();
         }
       } else {
-        setError(result.error || "An error occurred")
+        setError(result.error || "An error occurred");
       }
     } catch (err) {
-      setError("An unexpected error occurred")
+      setError("An unexpected error occurred");
     }
-  }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -88,7 +100,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
               <div className="bg-emerald-100 p-2 rounded-full">
                 <User className="w-6 h-6 text-emerald-600" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">Create Your Account</h2>
+              <h2 className="text-2xl font-bold text-gray-900">
+                Create Your Account
+              </h2>
             </div>
             <Button
               variant="ghost"
@@ -111,7 +125,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Personal Information */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Personal Information</h3>
+              <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                Personal Information
+              </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -120,7 +136,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                     id="firstName"
                     type="text"
                     value={formData.firstName}
-                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, firstName: e.target.value })
+                    }
                     required
                     disabled={isLoading}
                     className="transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -133,7 +151,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                     id="lastName"
                     type="text"
                     value={formData.lastName}
-                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, lastName: e.target.value })
+                    }
                     required
                     disabled={isLoading}
                     className="transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -147,7 +167,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                   id="dateOfBirth"
                   type="date"
                   value={formData.dateOfBirth}
-                  onChange={(e) => setFormData({ ...formData, dateOfBirth: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, dateOfBirth: e.target.value })
+                  }
                   required
                   disabled={isLoading}
                   className="transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -157,7 +179,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
 
             {/* Contact Information */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Contact Information</h3>
+              <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                Contact Information
+              </h3>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
@@ -167,7 +191,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
                     required
                     disabled={isLoading}
                     className="pl-10 transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -183,7 +209,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                     id="phone"
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
                     required
                     disabled={isLoading}
                     className="pl-10 transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -198,7 +226,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                   <textarea
                     id="address"
                     value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, address: e.target.value })
+                    }
                     required
                     disabled={isLoading}
                     rows={3}
@@ -211,7 +241,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
 
             {/* Security */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">Security</h3>
+              <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
+                Security
+              </h3>
 
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
@@ -219,7 +251,9 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                   id="password"
                   type="password"
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                   required
                   disabled={isLoading}
                   className="transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -233,7 +267,12 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
                   id="confirmPassword"
                   type="password"
                   value={formData.confirmPassword}
-                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      confirmPassword: e.target.value,
+                    })
+                  }
                   required
                   disabled={isLoading}
                   className="transition-all duration-300 focus:ring-2 focus:ring-emerald-400"
@@ -259,5 +298,5 @@ export default function UserSignupModal({ isOpen, onClose, onSuccess }: UserSign
         </div>
       </Card>
     </div>
-  )
+  );
 }

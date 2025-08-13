@@ -1,4 +1,6 @@
-interface Venue {
+// components/data/venueData.tsx
+
+export type Venue = {
   id: number;
   name: string;
   location: string;
@@ -10,9 +12,9 @@ interface Venue {
   amenities: string[];
   eventTypes: string[];
   description: string;
-}
-// Mock venue data
-const allVenues: Venue[] = [
+};
+
+export const allVenues: Venue[] = [
   {
     id: 1,
     name: "Grand Ballroom Elite",

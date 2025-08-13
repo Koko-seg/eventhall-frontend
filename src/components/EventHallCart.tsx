@@ -1,12 +1,13 @@
 "use client";
 
 import type React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Users, Star, Search } from "lucide-react";
+import { Calendar, MapPin, Users, Star } from "lucide-react";
 import Link from "next/link";
+import { allVenues } from "@/components/../data/mockData";
 
 export const EventHallCart = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -14,39 +15,6 @@ export const EventHallCart = () => {
   const [dragVelocity, setDragVelocity] = useState({ x: 0, y: 0 });
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const featuredHalls = [
-    {
-      id: 1,
-      name: "Grand Ballroom Elite",
-      location: "Downtown District",
-      capacity: 500,
-      rating: 4.9,
-      price: "$2,500",
-      image: "/luxury-event-hall.png",
-      tags: ["Wedding", "Corporate", "Luxury"],
-    },
-    {
-      id: 2,
-      name: "Modern Event Space",
-      location: "Tech Quarter",
-      capacity: 200,
-      rating: 4.8,
-      price: "$1,200",
-      image: "/minimalist-event-space.png",
-      tags: ["Corporate", "Launch", "Modern"],
-    },
-    {
-      id: 3,
-      name: "Garden Pavilion",
-      location: "Botanical Gardens",
-      capacity: 150,
-      rating: 4.7,
-      price: "$800",
-      image: "/garden-pavilion-lights.png",
-      tags: ["Wedding", "Outdoor", "Garden"],
-    },
-  ];
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -93,6 +61,8 @@ export const EventHallCart = () => {
       }, 800);
     }
   };
+
+  const featuredHalls = allVenues.slice(0, 3);
   return (
     <div
       ref={containerRef}
