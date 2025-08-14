@@ -1,5 +1,3 @@
-// components/data/venueData.tsx
-
 export type Venue = {
   id: number;
   name: string;
@@ -17,12 +15,12 @@ export type Venue = {
 export const allVenues: Venue[] = [
   {
     id: 1,
-    name: "Grand Ballroom Elite",
+    name: "MPM",
     location: "Downtown District",
     capacity: 500,
-    rating: 4.9,
+    rating: 4.4,
     price: 2500,
-    image: "/luxury-event-hall.png",
+    image: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrdkGrwlR4vB3clp1gVX3Fs561QwTg0jDZ8q-XkB_2gqoYjN6pbo7hqwGFQpOgZD3KNWBcXUbefSSfdh053CNMYREvk7mQ320Tk2RNe7WDVlzZywa41NsT9I_5h5jmdQPKtmE1THA=s1360-w1360-h1020-rw",
     tags: ["Wedding", "Corporate", "Luxury"],
     amenities: [
       "Full Kitchen",
@@ -36,12 +34,12 @@ export const allVenues: Venue[] = [
   },
   {
     id: 2,
-    name: "Modern Event Space",
+    name: "One",
     location: "Tech Quarter",
     capacity: 200,
     rating: 4.8,
     price: 1200,
-    image: "/minimalist-event-space.png",
+    image: "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noc6iIrn4hTa1n-zc2lrxa-YhoVsPAY5TMWBCQw7bhmLMf9HKsRW4_Fr1XYYcp3EaOZ4FTXpiiBJ4IOJ1L5hFS07unCJJRLfSfc4Q_ywNduRI1isNQj7L8bw9tdv-4cDZ89Im4n7g=w520-h350-n-k-no",
     tags: ["Corporate", "Launch", "Modern"],
     amenities: [
       "A/V Equipment",
@@ -49,7 +47,7 @@ export const allVenues: Venue[] = [
       "Catering Kitchen",
       "Parking",
     ],
-    eventTypes: ["Corporate", "Product Launch", "Conference"],
+    eventTypes: ["Бүх төрлийн хүлээн авалтын захиалга авна."],
     description: "Sleek contemporary space with floor-to-ceiling windows",
   },
   {
