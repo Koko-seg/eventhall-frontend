@@ -506,69 +506,6 @@ export default function SuperAdminDashboard() {
                 </ResponsiveContainer>
               </Card>
             </div>
-
-            {/* Quick Actions */}
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Quick Actions
-              </h3>
-              <div className="grid md:grid-cols-5 gap-4">
-                <Button
-                  onClick={() => setActiveTab("email-notifications")}
-                  className="p-4 h-auto flex flex-col items-center space-y-2 bg-indigo-600 hover:bg-indigo-700"
-                >
-                  <Mail className="w-6 h-6" />
-                  <span>Email Notifications</span>
-                  {platformStats.unreadEmails > 0 && (
-                    <Badge className="bg-red-500 text-white">
-                      {platformStats.unreadEmails} unread
-                    </Badge>
-                  )}
-                </Button>
-
-                <Button
-                  onClick={() => setActiveTab("pending-admins")}
-                  className="p-4 h-auto flex flex-col items-center space-y-2 bg-blue-600 hover:bg-blue-700"
-                >
-                  <UserCheck className="w-6 h-6" />
-                  <span>Review Admins</span>
-                  {pendingAdmins.length > 0 && (
-                    <Badge className="bg-red-500 text-white">
-                      {pendingAdmins.length} pending
-                    </Badge>
-                  )}
-                </Button>
-
-                <Button
-                  onClick={() => setActiveTab("pending-venues")}
-                  className="p-4 h-auto flex flex-col items-center space-y-2 bg-purple-600 hover:bg-purple-700"
-                >
-                  <Building2 className="w-6 h-6" />
-                  <span>Review Venues</span>
-                  {pendingVenues.length > 0 && (
-                    <Badge className="bg-red-500 text-white">
-                      {pendingVenues.length} pending
-                    </Badge>
-                  )}
-                </Button>
-
-                <Button
-                  onClick={() => setActiveTab("analytics")}
-                  className="p-4 h-auto flex flex-col items-center space-y-2 bg-green-600 hover:bg-green-700"
-                >
-                  <TrendingUp className="w-6 h-6" />
-                  <span>View Analytics</span>
-                </Button>
-
-                <Button
-                  onClick={() => setActiveTab("settings")}
-                  className="p-4 h-auto flex flex-col items-center space-y-2 bg-gray-600 hover:bg-gray-700"
-                >
-                  <Settings className="w-6 h-6" />
-                  <span>System Settings</span>
-                </Button>
-              </div>
-            </Card>
           </TabsContent>
 
           <TabsContent value="email-notifications" className="space-y-6">

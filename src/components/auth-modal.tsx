@@ -37,7 +37,7 @@ export default function AuthModal({
     email: "",
     password: "",
     confirmPassword: "",
-    fullName: "",
+    name: "",
     role: adminOnly
       ? ("admin" as "user" | "admin" | "super_admin")
       : ("user" as "user" | "admin" | "super_admin"), // Default role based on adminOnly prop
@@ -70,7 +70,7 @@ export default function AuthModal({
         result = await register({
           email: formData.email,
           password: formData.password,
-          fullName: formData.fullName,
+          name: formData.name,
           role: formData.role,
         });
       }
@@ -81,7 +81,7 @@ export default function AuthModal({
           email: "",
           password: "",
           confirmPassword: "",
-          fullName: "",
+          name: "",
           role: adminOnly ? "admin" : "user",
         });
         if (onSuccess) {
@@ -170,9 +170,9 @@ export default function AuthModal({
                 <Input
                   id="fullName"
                   type="text"
-                  value={formData.fullName}
+                  value={formData.name}
                   onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
+                    setFormData({ ...formData, name: e.target.value })
                   }
                   required={!isLogin}
                   disabled={isLoading}
@@ -291,7 +291,7 @@ export default function AuthModal({
                   email: "",
                   password: "",
                   confirmPassword: "",
-                  fullName: "",
+                  name: "",
                   role: adminOnly ? "admin" : "user",
                 });
               }}
