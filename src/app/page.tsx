@@ -57,6 +57,11 @@ export default function HomePage() {
   const handleUserSignupSuccess = () => {
     window.location.href = "/explore";
   };
+  const handleSuperAdminAccess = () => {
+    setIsSignupSelectionOpen(false);
+    // Redirect directly to super admin page with email verification
+    window.location.href = "/super-admin";
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-emerald-50 overflow-x-hidden">
@@ -79,6 +84,7 @@ export default function HomePage() {
         onClose={() => setIsSignupSelectionOpen(false)}
         onSelectAdmin={handleAdminSignup}
         onSelectUser={handleUserSignup}
+        onSelectSuperAdmin={handleSuperAdminAccess}
       />
 
       <UserSignupModal

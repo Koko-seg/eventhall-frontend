@@ -1,14 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { X, Building, User } from "lucide-react";
-import { useRef, useState } from "react";
+import { X, Building, User, Shield } from "lucide-react";
 
 interface SignupSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectAdmin: () => void;
   onSelectUser: () => void;
+  onSelectSuperAdmin?: () => void; // Added super admin callback
 }
 
 export default function SignupSelectionModal({
@@ -16,25 +16,9 @@ export default function SignupSelectionModal({
   onClose,
   onSelectAdmin,
   onSelectUser,
+  onSelectSuperAdmin,
 }: SignupSelectionModalProps) {
   if (!isOpen) return null;
-
-  const [isSignupSelectionOpen, setIsSignupSelectionOpen] = useState(false);
-  const [isUserSignupOpen, setIsUserSignupOpen] = useState(false);
-
-  const handleAdminSignup = () => {
-    setIsSignupSelectionOpen(false);
-    window.location.href = "/admin-signup";
-  };
-
-  const handleUserSignup = () => {
-    setIsSignupSelectionOpen(false);
-    setIsUserSignupOpen(true);
-  };
-
-  const handleUserSignupSuccess = () => {
-    window.location.href = "/explore";
-  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -100,6 +84,28 @@ export default function SignupSelectionModal({
                 </div>
               </div>
             </Button>
+
+            {/* Super Admin Button */}
+            {onSelectSuperAdmin && (
+              <Button
+                onClick={onSelectSuperAdmin}
+                className="w-full p-6 h-auto bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-2xl group"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="bg-white/20 p-3 rounded-full group-hover:bg-white/30 transition-all duration-300">
+                    <Shield className="w-6 h-6" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-lg font-bold mb-1">
+                      Super Admin Access
+                    </div>
+                    <div className="text-sm opacity-90">
+                      Platform administration dashboard
+                    </div>
+                  </div>
+                </div>
+              </Button>
+            )}
           </div>
         </div>
       </Card>
