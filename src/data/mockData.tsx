@@ -12,6 +12,13 @@ export type Venue = {
   description: string;
 };
 
+export type Admin = {
+  id: number;
+  fullName: string;
+  email: string;
+  status: "pending" | "approved" | "rejected";
+};
+
 export const allVenues: Venue[] = [
   {
     id: 1,
