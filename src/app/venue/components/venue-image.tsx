@@ -2,31 +2,30 @@
 
 import { useState } from "react"
 import { ChevronLeft, ChevronRight, Maximize2, Play } from "lucide-react"
+import { VenueImageGalleryProps } from "@/types/venue-types"
 
-interface VenueImageGalleryProps {
-  images: string[]
-  videos?: string[]
-  venueName: string
-  onOpenModal: () => void
+type ImageGalleryProps ={
+imageGallery:VenueImageGalleryProps
 }
 
-export function VenueImageGallery({ images, videos, venueName, onOpenModal }: VenueImageGalleryProps) {
+export function VenueImageGallery({ imageGallery }: ImageGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length)
+    setCurrentImageIndex((prev) => (prev + 1) % imageGallery.images.length)
   }
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)
+    setCurrentImageIndex((prev) => (prev - 1 + imageGallery.images.length) % imageGallery.images.length)
   }
+
 
   return (
     <div className="relative mb-8">
       <div className="relative h-96 md:h-[600px] rounded-2xl overflow-hidden group">
         <img
-          src={images[currentImageIndex] || "/placeholder.svg"}
-          alt={venueName}
+          src={imageGallery?.images[currentImageIndex] || "/placeholder.svg"}
+          alt={imageGallery?.venueName}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
@@ -47,7 +46,7 @@ export function VenueImageGallery({ images, videos, venueName, onOpenModal }: Ve
 
         {/* Fullscreen Button */}
         <button
-          onClick={onOpenModal}
+          onClick={imageGallery.onOpenModal}
           className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-full p-2 transition-all duration-300 hover:scale-110 shadow-lg"
         >
           <Maximize2 className="w-5 h-5" />
@@ -55,12 +54,12 @@ export function VenueImageGallery({ images, videos, venueName, onOpenModal }: Ve
 
         {/* Image Counter */}
         <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-          {currentImageIndex + 1} / {images.length}
+          {currentImageIndex + 1} / {imageGallery.images.length}
         </div>
 
         {/* Image Indicators */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-          {images.map((_, index) => (
+          {imageGallery.images.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
@@ -74,7 +73,7 @@ export function VenueImageGallery({ images, videos, venueName, onOpenModal }: Ve
 
       {/* Thumbnail Gallery */}
       <div className="flex gap-3 mt-6 overflow-x-auto pb-2">
-        {images.map((image, index) => (
+        {imageGallery.images.map((image, index) => (
           <button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
@@ -84,20 +83,20 @@ export function VenueImageGallery({ images, videos, venueName, onOpenModal }: Ve
           >
             <img
               src={image || "/placeholder.svg"}
-              alt={`${venueName} ${index + 1}`}
+              alt={`${imageGallery.venueName} ${index + 1}`}
               className="w-full h-full object-cover"
             />
           </button>
         ))}
-        {videos &&
-          videos.map((video, index) => (
+        {imageGallery.videos &&
+          imageGallery.videos.map((video, index) => (
             <button
               key={`video-${index}`}
               className="flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border-3 border-transparent hover:border-amber-200 transition-all duration-300 hover:scale-105 relative"
             >
               <img
                 src={video || "/placeholder.svg"}
-                alt={`${venueName} video ${index + 1}`}
+                alt={`${imageGallery.venueName} video ${index + 1}`}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
