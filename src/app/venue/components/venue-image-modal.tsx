@@ -1,18 +1,11 @@
 "use client"
 
+import { VenueImageModalProps } from "@/types/venue-types"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
-interface ImageModalProps {
-  isOpen: boolean
-  images: string[]
-  currentIndex: number
-  venueName: string
-  onClose: () => void
-  onNext: () => void
-  onPrev: () => void
-}
 
-export function ImageModal({ isOpen, images, currentIndex, venueName, onClose, onNext, onPrev }: ImageModalProps) {
+
+export function ImageModal({isOpen, onClose,onPrev,onNext, venueName ,images,currentIndex}: VenueImageModalProps) {
   if (!isOpen) return null
 
   return (

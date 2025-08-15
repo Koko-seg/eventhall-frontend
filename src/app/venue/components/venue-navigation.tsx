@@ -1,15 +1,12 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { VenueNavigationProps } from "@/types/venue-types"
 import { ArrowLeft, Heart, Share2 } from "lucide-react"
 import Link from "next/link"
 
-interface VenueNavigationProps {
-  isLiked: boolean
-  onToggleLike: () => void
-}
 
-export function VenueNavigation({ isLiked, onToggleLike }: VenueNavigationProps) {
+export function VenueNavigation({ onToggleLike,isLiked }: VenueNavigationProps) {
   return (
     <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4">

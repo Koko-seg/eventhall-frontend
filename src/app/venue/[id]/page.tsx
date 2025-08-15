@@ -70,18 +70,7 @@ export default function VenueDetailsPage() {
     reviewCount: 127,
     price: 2500,
     images: [
-      "/luxury-event-hall.png",
-      "/elegant-ballroom.png",
-      "/minimalist-event-space.png",
-      "/garden-pavilion-lights.png",
-      "/rooftop-terrace-city-view.png",
-      "/industrial-loft-exposed-brick.png",
-      "/elegant-dining-setup.png",
-      "/white-chairs-flowers-wedding.png",
-      "/modern-cocktail-reception.png",
-      "/placeholder-4elti.png",
-      "/bridal-suite-prep.png",
-      "/outdoor-terrace-city-view.png",
+      'https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D'
     ],
     videos: ["/venue-walkthrough-thumbnail.png"],
     description: "Elegant ballroom with crystal chandeliers and marble floors",
@@ -213,9 +202,9 @@ export default function VenueDetailsPage() {
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         <VenueImageGallery
-          images={venue.images}
-          videos={venue.videos}
-          venueName={venue.name}
+          images={venue?.images}
+          videos={venue?.videos}
+          venueName={venue?.name}
           onOpenModal={() => setIsImageModalOpen(true)}
         />
 
@@ -223,14 +212,14 @@ export default function VenueDetailsPage() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             <VenueHeader
-              name={venue.name}
-              location={venue.location}
-              capacity={venue.capacity}
-              rating={venue.rating}
-              reviewCount={venue.reviewCount}
-              price={venue.price}
-              description={venue.description}
-              awards={venue.awards}
+              name={venue?.name}
+              location={venue?.location}
+              capacity={venue?.capacity}
+              rating={venue?.rating}
+              reviewCount={venue?.reviewCount}
+              price={venue?.price}
+              description={venue?.description}
+              awards={venue?.awards}
             />
 
             <VenueTabs venue={venue} />
